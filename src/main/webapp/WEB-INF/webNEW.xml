@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+    <display-name>Hibernate Web Application</display-name>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/spring/root-context.xml
+            <!--/WEB-INF/contexts/webFlow.xml-->
+            <!--/WEB-INF/contexts/webflow-config.xml-->
+        </param-value>
+    </context-param>
+    <context-param>
+        <param-name>log4jContextName</param-name>
+        <param-value>MyApp</param-value>
+    </context-param>
+
+
+
+
+
+
+    <!--<filter>-->
+    <!--<filter-name>httpPutFormFilter</filter-name>-->
+    <!--<filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>-->
+    <!--</filter>-->
+
+    <!--<filter-mapping>-->
+    <!--<filter-name>httpPutFormFilter</filter-name>-->
+    <!--<servlet-name>frontController</servlet-name>-->
+    <!--<dispatcher>REQUEST</dispatcher>-->
+    <!--<dispatcher>ASYNC</dispatcher>-->
+    <!--</filter-mapping>-->
+
+    <!--ENABLE EL IN TILES DEFS XML-->
+    <!--<servlet>-->
+    <!--<servlet-name>tiles-init</servlet-name>-->
+    <!--<servlet-class>org.apache.tiles.web.startup.TilesServlet</servlet-class>-->
+    <!--<init-param>-->
+    <!--<param-name>org.apache.tiles.evaluator.AttributeEvaluator</param-name>-->
+    <!--<param-value>org.apache.tiles.evaluator.el.ELAttributeEvaluatr</param-value>-->
+    <!--</init-param>-->
+    <!--<async-supported>true</async-supported>-->
+    <!--</servlet>-->
+
+    <servlet>
+        <servlet-name>frontController</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+        </init-param>
+        <!--<init-param>-->
+        <!--<param-name>contextClass</param-name>-->
+        <!--<param-value>org.springframework.web.context.support.XmlWebApplicationContext</param-value>-->
+        <!--</init-param>-->
+        <load-on-startup>1</load-on-startup>
+        <async-supported>true</async-supported>
+
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>frontController</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!--<security-constraint>-->
+    <!--<web-resource-collection>-->
+    <!--<web-resource-name>Login Page</web-resource-name>-->
+    <!--<url-pattern>/login</url-pattern>-->
+    <!--</web-resource-collection>-->
+    <!--<user-data-constraint>-->
+    <!--<transport-guarantee>CONFIDENTIAL</transport-guarantee>-->
+    <!--</user-data-constraint>-->
+    <!--</security-constraint>-->
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+
+            <page-encoding>UTF-8</page-encoding>
+
+            <scripting-invalid>true</scripting-invalid>
+
+            <default-content-type>text/html</default-content-type>
+
+
+        </jsp-property-group>
+
+    </jsp-config>
+
+
+    <session-config>
+        <session-timeout>60</session-timeout>
+        <cookie-config>
+            <http-only>true</http-only>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
+
+
+    <!--<distributable/>-->
+</web-app>
